@@ -30,11 +30,11 @@ getTodos() {
 
   addTodo() {
     if (!this.model.id){
-      //console.log(this.model);
     this.todoService.addTodo(this.model)
       .subscribe(todos => {
         this.model = todos;
         this.getTodos();
+        this.clearModel();
       });
     }
     else {
@@ -43,6 +43,7 @@ getTodos() {
       .subscribe(todos => {
         this.model = todos;
         this.getTodos();
+        this.clearModel();
       });
     }
   }
@@ -68,4 +69,17 @@ getTodos() {
           this.model = todo;
         })
 }
+
+clearModel(){
+ this.model.id=0;
+ this.model.name="";
+ this.model.status="";
+ this.model.priority="";
+ this.model.isCompleted="";
+}
+public isCompleted = [
+    { value: 'false', display: 'False' },
+    { value: 'true', display: 'True' }
+   
+];
 }
