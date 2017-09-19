@@ -3,74 +3,78 @@
   <h1>
     Welcome to {{title}}!
   </h1>
-  
-<!--The content below is only a placeholder and can be replaced.-->
-<div class="panel panel-default">
-  <div class="panel-heading">Todo Form :</div>
-  <div class="panel-body">
-  <form #myForm="ngForm" class="form-horizontal" (submit)="addTodo()">
-  <div class="form-group">
-    <label for="name" class="col-sm-2 control-label">Name : </label>
-    <div class="col-xs-3">
-      <input type="text" class="form-control" [(ngModel)]="model.name" name="name" >
-</div>
-</div>
- <div class="form-group">
-    <label for="status" class="col-sm-2 control-label">status : </label>
-    <div class="col-xs-3">
-      <input type="text" class="form-control" [(ngModel)]="model.status" name="status">
-    </div>
-</div>
-<div class="form-group">
-    <label for="priority" class="col-sm-2 control-label">priority : </label>
-    <div class="col-xs-3">
-      <input type="text" class="form-control" [(ngModel)]="model.priority" name="priority">
-    </div>
-</div>
-<div class="form-group">
-    <label for="isCompleted" class="col-sm-2 control-label">isCompleted : </label>
-    <div class="col-xs-3">
-      <input type="text" class="form-control" [(ngModel)]="model.isCompleted" name="isCompleted">
-    </div>
-</div>
 
-<div class="form-group">
-    <div class="col-sm-offset-2 col-sm-8">
-      <button type="submit" class="btn btn-success">Save</button>
-       <button type="reset"  class="btn btn-info">Cancel</button>
+  <!--The content below is only a placeholder and can be replaced.-->
+  <div class="panel panel-default">
+    <div class="panel-heading">Todo Form :</div>
+    <div class="panel-body">
+      <form #myForm="ngForm" class="form-horizontal" (submit)="addTodo()">
+        <div class="form-group">
+          <label for="name" class="col-sm-2 control-label">Name : </label>
+          <div class="col-xs-3">
+            <input type="text" class="form-control" [(ngModel)]="model.name" name="name">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="status" class="col-sm-2 control-label">status : </label>
+          <div class="col-xs-3">
+            <input type="text" class="form-control" [(ngModel)]="model.status" name="status">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="priority" class="col-sm-2 control-label">priority : </label>
+          <div class="col-xs-3">
+            <input type="text" class="form-control" [(ngModel)]="model.priority" name="priority">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="isCompleted" class="col-sm-2 control-label">isCompleted :</label>
+          <div class="col-xs-3">
+            <select name="isCompleted" [(ngModel)]="model.isCompleted">
+        <option *ngFor="let role of isCompleted" [value]="role.value">  
+        {{role.display}}
+        </option>
+    </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-8">
+            <button type="submit" class="btn btn-success">Save</button>
+            <button type="reset" class="btn btn-info">Cancel</button>
+          </div>
+
+        </div>
+      </form>
+
     </div>
-   
   </div>
-</form>
+  <div class="container">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <td>Id</td>
+          <td>Name</td>
+          <td>Status</td>
+          <td>Priority</td>
+          <td>isCompleted</td>
+          <td width="200" align="center">Action</td>
+        </tr>
+      </thead>
+      <tbody>
 
-</div>
-</div>
-<div class="container">
-<table class="table table-bordered">
-		  <thead>
-			<tr>
-			  <td>Id</td>
-        <td>Name</td>
-			  <td>Status</td>
-			  <td>Priority</td>
-        <td>isCompleted</td>
-			  <td width="200" align="center">Action</td>
-			</tr>
-		  </thead>
-<tbody>
-
-  <tbody>
-			 <tr  *ngFor="let todo of todos">
-        <td>{{todo.id}}</td> 
-				<td>{{todo.name}}</td>
-				<td>{{todo.status}}</td>
-				<td>{{todo.priority}}</td>
-        <td>{{todo.isCompleted}}</td>
-				<td width="275"> 
-					<a class="btn btn-success" (click)="editTodo(todo.id)">Edit</a>
-					<a class="btn btn-danger" (click)="deleteTodo(todo.id)">Delete</a>
-				</td>
-			 </tr>
-		  </tbody>
-		</table>
-</div>
+        <tbody>
+          <tr *ngFor="let todo of todos">
+            <td>{{todo.id}}</td>
+            <td>{{todo.name}}</td>
+            <td>{{todo.status}}</td>
+            <td>{{todo.priority}}</td>
+            <td>{{todo.isCompleted}}</td>
+            <td width="275">
+              <a class="btn btn-success" (click)="editTodo(todo.id)">Edit</a>
+              <a class="btn btn-danger" (click)="deleteTodo(todo.id)">Delete</a>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
